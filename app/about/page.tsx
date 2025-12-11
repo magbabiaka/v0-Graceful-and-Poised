@@ -20,7 +20,7 @@ export default function AboutPage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-16 bg-sandstone">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
@@ -67,24 +67,24 @@ export default function AboutPage() {
             </p>
 
             <div className="grid md:grid-cols-3 gap-8 mt-10">
-              <div className="bg-white p-8 rounded-lg shadow-elegant">
-                <h3 className="text-xl font-bold text-forest-green mb-4">Strategic Advisory Approach</h3>
-                <p className="text-forest-green/80">
+              <div className="bg-card p-8 rounded-lg shadow-elegant">
+                <h3 className="text-xl font-bold text-card-foreground mb-4">Strategic Advisory Approach</h3>
+                <p className="text-muted-foreground">
                   We partner with you as trusted advisors to solve complex business challenges—not just as trainers.
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-lg shadow-elegant">
-                <h3 className="text-xl font-bold text-forest-green mb-4">Business Outcome Focused</h3>
-                <p className="text-forest-green/80">
+              <div className="bg-card p-8 rounded-lg shadow-elegant">
+                <h3 className="text-xl font-bold text-card-foreground mb-4">Business Outcome Focused</h3>
+                <p className="text-muted-foreground">
                   Our programs are designed to increase market share, accelerate negotiations, and build stronger
                   leadership pipelines.
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-lg shadow-elegant">
-                <h3 className="text-xl font-bold text-forest-green mb-4">Global Perspective, Local Expertise</h3>
-                <p className="text-forest-green/80">
+              <div className="bg-card p-8 rounded-lg shadow-elegant">
+                <h3 className="text-xl font-bold text-card-foreground mb-4">Global Perspective, Local Expertise</h3>
+                <p className="text-muted-foreground">
                   Our consultants bring a wealth of international experience, ensuring culturally relevant solutions for
                   every market.
                 </p>
@@ -125,7 +125,7 @@ export default function AboutPage() {
           </div>
 
           {/* Founder Section */}
-          <div className="bg-white p-10 rounded-lg shadow-elegant">
+          <div className="bg-card p-10 rounded-lg shadow-elegant">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <Image
@@ -164,7 +164,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="bg-forest-green rounded-lg p-12 shadow-elegant text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-antique-gold mb-4">
@@ -180,7 +180,7 @@ export default function AboutPage() {
               </Button>
               <Button
                 variant="outline"
-                className="border-antique-gold text-antique-gold hover:bg-forest-green-light font-bold text-lg px-8 py-6"
+                className="border-antique-gold text-antique-gold hover:bg-forest-green-light font-bold text-lg px-8 py-6 bg-transparent"
               >
                 <Link href="/contact">Contact Us Today</Link>
               </Button>

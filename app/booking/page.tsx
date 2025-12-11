@@ -49,11 +49,11 @@ export default function BookingPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-navy">
+      <section className="pt-32 pb-16 bg-primary">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gold mb-6">Book Your Consultation</h1>
-            <p className="text-xl text-ivory mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-secondary mb-6">Book Your Consultation</h1>
+            <p className="text-xl text-primary-foreground mb-8">
               Take the first step toward elevating your professional presence and leadership skills.
             </p>
           </div>
@@ -61,54 +61,58 @@ export default function BookingPage() {
       </section>
 
       {/* Booking Section */}
-      <section className="py-16 bg-ivory">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Booking Information */}
             <div>
-              <div className="bg-white p-8 rounded-lg shadow-elegant mb-8">
-                <h2 className="text-2xl font-bold text-navy mb-6">Why Book a Consultation?</h2>
-                <p className="text-navy-light mb-6">
+              <div className="bg-card p-8 rounded-lg shadow-elegant mb-8">
+                <h2 className="text-2xl font-bold text-card-foreground mb-6">Why Book a Consultation?</h2>
+                <p className="text-muted-foreground mb-6">
                   Our complimentary 30-minute consultation is designed to understand your specific needs and goals.
                   During this session, we'll:
                 </p>
 
                 <div className="space-y-4 mb-6">
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-gold mr-3 mt-1 flex-shrink-0" />
-                    <p className="text-navy-light">Discuss your current challenges and aspirations</p>
+                    <CheckCircle className="h-5 w-5 text-secondary mr-3 mt-1 flex-shrink-0" />
+                    <p className="text-muted-foreground">Discuss your current challenges and aspirations</p>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-gold mr-3 mt-1 flex-shrink-0" />
-                    <p className="text-navy-light">Identify areas where our expertise can help you excel</p>
+                    <CheckCircle className="h-5 w-5 text-secondary mr-3 mt-1 flex-shrink-0" />
+                    <p className="text-muted-foreground">Identify areas where our expertise can help you excel</p>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-gold mr-3 mt-1 flex-shrink-0" />
-                    <p className="text-navy-light">Outline potential strategies and solutions tailored to your needs</p>
+                    <CheckCircle className="h-5 w-5 text-secondary mr-3 mt-1 flex-shrink-0" />
+                    <p className="text-muted-foreground">
+                      Outline potential strategies and solutions tailored to your needs
+                    </p>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-gold mr-3 mt-1 flex-shrink-0" />
-                    <p className="text-navy-light">Answer any questions you have about our services and approach</p>
+                    <CheckCircle className="h-5 w-5 text-secondary mr-3 mt-1 flex-shrink-0" />
+                    <p className="text-muted-foreground">
+                      Answer any questions you have about our services and approach
+                    </p>
                   </div>
                 </div>
 
-                <p className="text-navy-light">
+                <p className="text-muted-foreground">
                   There's no obligation, and you'll walk away with valuable insights regardless of whether you choose to
                   work with us.
                 </p>
               </div>
 
-              <div className="bg-navy text-ivory p-8 rounded-lg shadow-elegant">
-                <h2 className="text-2xl font-bold text-gold mb-6">What to Expect</h2>
+              <div className="bg-primary text-primary-foreground p-8 rounded-lg shadow-elegant">
+                <h2 className="text-2xl font-bold text-secondary mb-6">What to Expect</h2>
 
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <div className="bg-gold/20 p-2 rounded-full mr-4 flex-shrink-0">
-                      <Calendar className="h-5 w-5 text-gold" />
+                    <div className="bg-secondary/20 p-2 rounded-full mr-4 flex-shrink-0">
+                      <Calendar className="h-5 w-5 text-secondary" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gold text-lg">Scheduling</h3>
-                      <p className="text-ivory-dark">
+                      <h3 className="font-bold text-secondary text-lg">Scheduling</h3>
+                      <p className="text-muted">
                         After submitting your booking request, you'll receive a confirmation email with the date and
                         time of your consultation.
                       </p>
@@ -116,12 +120,12 @@ export default function BookingPage() {
                   </div>
 
                   <div className="flex items-start">
-                    <div className="bg-gold/20 p-2 rounded-full mr-4 flex-shrink-0">
-                      <Clock className="h-5 w-5 text-gold" />
+                    <div className="bg-secondary/20 p-2 rounded-full mr-4 flex-shrink-0">
+                      <Clock className="h-5 w-5 text-secondary" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gold text-lg">Duration</h3>
-                      <p className="text-ivory-dark">
+                      <h3 className="font-bold text-secondary text-lg">Duration</h3>
+                      <p className="text-muted">
                         Your complimentary consultation will last approximately 30 minutes, giving us enough time to
                         understand your needs.
                       </p>
@@ -129,12 +133,12 @@ export default function BookingPage() {
                   </div>
 
                   <div className="flex items-start">
-                    <div className="bg-gold/20 p-2 rounded-full mr-4 flex-shrink-0">
-                      <CheckCircle className="h-5 w-5 text-gold" />
+                    <div className="bg-secondary/20 p-2 rounded-full mr-4 flex-shrink-0">
+                      <CheckCircle className="h-5 w-5 text-secondary" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gold text-lg">Follow-Up</h3>
-                      <p className="text-ivory-dark">
+                      <h3 className="font-bold text-secondary text-lg">Follow-Up</h3>
+                      <p className="text-muted">
                         After your consultation, we'll send you a personalized proposal outlining our recommended
                         services and next steps.
                       </p>
@@ -145,9 +149,9 @@ export default function BookingPage() {
             </div>
 
             {/* Booking Form */}
-            <div className="bg-white p-8 rounded-lg shadow-elegant">
-              <h2 className="text-2xl font-bold text-navy mb-6">Book Your Free Consultation</h2>
-              <p className="text-navy-light mb-8">
+            <div className="bg-card p-8 rounded-lg shadow-elegant">
+              <h2 className="text-2xl font-bold text-card-foreground mb-6">Book Your Free Consultation</h2>
+              <p className="text-muted-foreground mb-8">
                 Please fill out the form below to schedule your complimentary 30-minute consultation.
               </p>
 
@@ -169,26 +173,26 @@ export default function BookingPage() {
                 <form className="space-y-6" onSubmit={handleSubmit} ref={formRef}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label htmlFor="firstName" className="text-sm font-medium text-navy">
+                      <label htmlFor="firstName" className="text-sm font-medium text-card-foreground">
                         First Name*
                       </label>
                       <Input
                         id="firstName"
                         name="firstName"
                         placeholder="Enter your first name"
-                        className="border-navy-light focus:border-gold focus:ring-gold"
+                        className="border-input focus:border-accent focus:ring-accent"
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="lastName" className="text-sm font-medium text-navy">
+                      <label htmlFor="lastName" className="text-sm font-medium text-card-foreground">
                         Last Name*
                       </label>
                       <Input
                         id="lastName"
                         name="lastName"
                         placeholder="Enter your last name"
-                        className="border-navy-light focus:border-gold focus:ring-gold"
+                        className="border-input focus:border-accent focus:ring-accent"
                         required
                       />
                     </div>
@@ -196,7 +200,7 @@ export default function BookingPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium text-navy">
+                      <label htmlFor="email" className="text-sm font-medium text-card-foreground">
                         Email Address*
                       </label>
                       <Input
@@ -204,42 +208,42 @@ export default function BookingPage() {
                         name="email"
                         type="email"
                         placeholder="Enter your email address"
-                        className="border-navy-light focus:border-gold focus:ring-gold"
+                        className="border-input focus:border-accent focus:ring-accent"
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="phone" className="text-sm font-medium text-navy">
+                      <label htmlFor="phone" className="text-sm font-medium text-card-foreground">
                         Phone Number*
                       </label>
                       <Input
                         id="phone"
                         name="phone"
                         placeholder="Enter your phone number"
-                        className="border-navy-light focus:border-gold focus:ring-gold"
+                        className="border-input focus:border-accent focus:ring-accent"
                         required
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="company" className="text-sm font-medium text-navy">
+                    <label htmlFor="company" className="text-sm font-medium text-card-foreground">
                       Company/Organization
                     </label>
                     <Input
                       id="company"
                       name="company"
                       placeholder="Enter your company or organization"
-                      className="border-navy-light focus:border-gold focus:ring-gold"
+                      className="border-input focus:border-accent focus:ring-accent"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="service" className="text-sm font-medium text-navy">
+                    <label htmlFor="service" className="text-sm font-medium text-card-foreground">
                       Service of Interest*
                     </label>
                     <Select name="service" defaultValue="one-on-one-coaching">
-                      <SelectTrigger className="border-navy-light focus:border-gold focus:ring-gold">
+                      <SelectTrigger className="border-input focus:border-accent focus:ring-accent">
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
                       <SelectContent>
@@ -255,23 +259,23 @@ export default function BookingPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label htmlFor="preferredDate" className="text-sm font-medium text-navy">
+                      <label htmlFor="preferredDate" className="text-sm font-medium text-card-foreground">
                         Preferred Date*
                       </label>
                       <Input
                         id="preferredDate"
                         name="preferredDate"
                         type="date"
-                        className="border-navy-light focus:border-gold focus:ring-gold"
+                        className="border-input focus:border-accent focus:ring-accent"
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="preferredDay" className="text-sm font-medium text-navy">
+                      <label htmlFor="preferredDay" className="text-sm font-medium text-card-foreground">
                         Preferred Day*
                       </label>
                       <Select name="preferredDay" defaultValue="monday">
-                        <SelectTrigger className="border-navy-light focus:border-gold focus:ring-gold">
+                        <SelectTrigger className="border-input focus:border-accent focus:ring-accent">
                           <SelectValue placeholder="Select a day" />
                         </SelectTrigger>
                         <SelectContent>
@@ -286,11 +290,11 @@ export default function BookingPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="preferredTime" className="text-sm font-medium text-navy">
+                    <label htmlFor="preferredTime" className="text-sm font-medium text-card-foreground">
                       Preferred Time Slot*
                     </label>
                     <Select name="preferredTime" defaultValue="9am">
-                      <SelectTrigger className="border-navy-light focus:border-gold focus:ring-gold">
+                      <SelectTrigger className="border-input focus:border-accent focus:ring-accent">
                         <SelectValue placeholder="Select a time slot" />
                       </SelectTrigger>
                       <SelectContent>
@@ -307,26 +311,26 @@ export default function BookingPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-navy">
+                    <label htmlFor="message" className="text-sm font-medium text-card-foreground">
                       What specific challenges or goals would you like to discuss?
                     </label>
                     <Textarea
                       id="message"
                       name="message"
                       placeholder="Please share any specific topics or questions you'd like to address during the consultation"
-                      className="border-navy-light focus:border-gold focus:ring-gold min-h-[120px]"
+                      className="border-input focus:border-accent focus:ring-accent min-h-[120px]"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="referral" className="text-sm font-medium text-navy">
+                    <label htmlFor="referral" className="text-sm font-medium text-card-foreground">
                       How did you hear about us?
                     </label>
                     <Input
                       id="referral"
                       name="referral"
                       placeholder="Friend, social media, search engine, etc."
-                      className="border-navy-light focus:border-gold focus:ring-gold"
+                      className="border-input focus:border-accent focus:ring-accent"
                     />
                   </div>
 
@@ -335,12 +339,12 @@ export default function BookingPage() {
                       type="checkbox"
                       id="privacy"
                       name="privacy"
-                      className="mt-1 border-navy-light focus:ring-gold text-gold"
+                      className="mt-1 border-input focus:ring-accent text-accent"
                       required
                     />
-                    <label htmlFor="privacy" className="text-sm text-navy-light">
+                    <label htmlFor="privacy" className="text-sm text-muted-foreground">
                       I agree to the{" "}
-                      <a href="/privacy-policy" className="text-gold hover:underline">
+                      <a href="/privacy-policy" className="text-accent hover:underline">
                         Privacy Policy
                       </a>{" "}
                       and consent to being contacted about my booking request.
@@ -351,7 +355,7 @@ export default function BookingPage() {
 
                   <Button
                     type="submit"
-                    className="w-full bg-gold hover:bg-gold-dark text-navy font-bold py-3"
+                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold py-3"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -372,14 +376,14 @@ export default function BookingPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-navy mb-6 text-center">What Our Clients Say</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-6 text-center">What Our Clients Say</h2>
           <div className="elegant-divider mb-10"></div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-ivory p-8 rounded-lg shadow-elegant">
-              <p className="text-navy-light italic mb-6">
+            <div className="bg-muted p-8 rounded-lg shadow-elegant">
+              <p className="text-muted-foreground italic mb-6">
                 "The initial consultation was incredibly valuable. They took the time to understand my specific
                 challenges and provided actionable insights right from the start."
               </p>
@@ -388,14 +392,14 @@ export default function BookingPage() {
                   <Image src="/images/testimonial-2.jpg" alt="Client" width={48} height={48} className="object-cover" />
                 </div>
                 <div>
-                  <p className="font-bold text-navy">Sarah Johnson</p>
-                  <p className="text-sm text-navy-light">CEO, Global Enterprises</p>
+                  <p className="font-bold text-foreground">Sarah Johnson</p>
+                  <p className="text-sm text-muted-foreground">CEO, Global Enterprises</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-ivory p-8 rounded-lg shadow-elegant">
-              <p className="text-navy-light italic mb-6">
+            <div className="bg-muted p-8 rounded-lg shadow-elegant">
+              <p className="text-muted-foreground italic mb-6">
                 "I was hesitant at first, but the free consultation convinced me of their expertise. They outlined a
                 clear path forward that aligned perfectly with my leadership goals."
               </p>
@@ -404,8 +408,8 @@ export default function BookingPage() {
                   <Image src="/images/testimonial-1.jpg" alt="Client" width={48} height={48} className="object-cover" />
                 </div>
                 <div>
-                  <p className="font-bold text-navy">Michael Chen</p>
-                  <p className="text-sm text-navy-light">Director of International Relations</p>
+                  <p className="font-bold text-foreground">Michael Chen</p>
+                  <p className="text-sm text-muted-foreground">Director of International Relations</p>
                 </div>
               </div>
             </div>

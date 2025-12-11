@@ -30,7 +30,7 @@ export default function CoachingPage() {
       </section>
 
       {/* Introduction Section */}
-      <section className="py-16 bg-sandstone">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <p className="text-xl text-forest-green/80 mb-10 text-center">
@@ -39,7 +39,7 @@ export default function CoachingPage() {
               or break opportunities.
             </p>
 
-            <div className="bg-white p-10 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1 mb-16">
+            <div className="bg-card p-10 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1 mb-16">
               <h2 className="text-3xl font-bold text-forest-green mb-6 text-center">
                 From Invisible to Influential: Master the Art of Power, Presence & Influence
               </h2>
@@ -164,7 +164,7 @@ export default function CoachingPage() {
               </div>
 
               <div className="space-y-8 mt-10">
-                <div className="bg-white p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
+                <div className="bg-card p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
                   <h3 className="text-xl font-bold text-antique-gold mb-4">Phase 1: Executive Presence & Influence</h3>
                   <div className="space-y-3">
                     <div className="flex items-start">
@@ -184,7 +184,7 @@ export default function CoachingPage() {
                   </div>
                 </div>
 
-                <div className="bg-white p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
+                <div className="bg-card p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
                   <h3 className="text-xl font-bold text-antique-gold mb-4">
                     Phase 2: The Power of Soft Influence & Relationship Management
                   </h3>
@@ -206,7 +206,7 @@ export default function CoachingPage() {
                   </div>
                 </div>
 
-                <div className="bg-white p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
+                <div className="bg-card p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
                   <h3 className="text-xl font-bold text-antique-gold mb-4">
                     Phase 3: Business Etiquette & Cultural Intelligence
                   </h3>
@@ -242,7 +242,7 @@ export default function CoachingPage() {
               <div className="elegant-divider"></div>
 
               <div className="grid md:grid-cols-2 gap-8 mt-10">
-                <div className="bg-white p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
+                <div className="bg-card p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
                   <p className="text-forest-green/80 italic mb-6">
                     "The coaching sessions completely changed how I show up in professional settings. Within months, I
                     received a promotion and was invited to represent my company at an international conference."
@@ -264,7 +264,7 @@ export default function CoachingPage() {
                   </div>
                 </div>
 
-                <div className="bg-white p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
+                <div className="bg-card p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
                   <p className="text-forest-green/80 italic mb-6">
                     "I used to struggle with building genuine connections, but the frameworks and techniques I learned
                     helped me strengthen client relationships. My business revenue has doubled in the past year!"
@@ -286,7 +286,7 @@ export default function CoachingPage() {
                   </div>
                 </div>
 
-                <div className="bg-white p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
+                <div className="bg-card p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
                   <p className="text-forest-green/80 italic mb-6">
                     "This program taught me how to refine my personal brand and confidently lead my team. The strategies
                     are practical and have had a lasting impact on my career trajectory."
@@ -308,7 +308,7 @@ export default function CoachingPage() {
                   </div>
                 </div>
 
-                <div className="bg-white p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
+                <div className="bg-card p-8 rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300 transform hover:-translate-y-1">
                   <p className="text-forest-green/80 italic mb-6">
                     "I've gained unshakable confidence in high-stakes negotiations and boardroom presentations. I now
                     feel equipped to handle any professional challenge with grace."

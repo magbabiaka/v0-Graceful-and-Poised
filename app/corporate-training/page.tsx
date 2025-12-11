@@ -203,6 +203,22 @@ export default function CorporateTrainingPage() {
                   </p>
                 </div>
               </div>
+
+              <div className="mt-8 pt-8 border-t border-antique-gold/30">
+                <p className="text-sandstone mb-4 italic">
+                  This is high-end leadership development for organizations that understand one truth:
+                </p>
+                <p className="text-antique-gold font-bold text-xl mb-6 text-center">
+                  Competitive advantage is psychological before it is operational.
+                </p>
+                <p className="text-sandstone">
+                  Using proprietary frameworks such as the{" "}
+                  <span className="font-bold text-antique-gold">Soft Power Ladder™</span>,{" "}
+                  <span className="font-bold text-antique-gold">Presence Design™</span>, and the{" "}
+                  <span className="font-bold text-antique-gold">Psychological Balance Sheet™</span>, to help leaders
+                  strengthen trust, elevate authority, and accelerate execution.
+                </p>
+              </div>
             </div>
 
             {/* Testimonials */}

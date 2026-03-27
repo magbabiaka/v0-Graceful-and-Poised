@@ -20,9 +20,10 @@ const connectionLinks = [
   {
     title: "Join My Free Newsletter",
     description: "Weekly insights on leadership, protocol, and professional excellence",
-    href: "/newsletter",
+    href: "https://gracefulandpoised.substack.com/",
     icon: Mail,
     variant: "default" as const,
+    external: true,
   },
   {
     title: "Book Me to Speak",

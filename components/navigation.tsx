@@ -225,6 +225,16 @@ export default function Navigation() {
             >
               Contact Us
             </Link>
+            <Link
+              href="/connect"
+              className={`text-sandstone hover:text-antique-gold transition-colors relative ${
+                isActive("/connect")
+                  ? "after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-antique-gold"
+                  : ""
+              }`}
+            >
+              Connect
+            </Link>
             {/* Fix: Remove the nested Link and use the Button directly with href */}
             <Button
               className="bg-antique-gold hover:bg-antique-gold-dark text-forest-green font-medium px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
@@ -379,6 +389,17 @@ export default function Navigation() {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Contact Us
+                </Link>
+              </motion.div>
+              <motion.div variants={itemVariants}>
+                <Link
+                  href="/connect"
+                  className={`block text-sandstone hover:text-antique-gold transition-colors py-3 ${
+                    isActive("/connect") ? "text-antique-gold" : ""
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Connect
                 </Link>
               </motion.div>
               <motion.div variants={itemVariants} className="pt-2">

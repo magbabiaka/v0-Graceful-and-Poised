@@ -240,7 +240,7 @@ export default function Navigation() {
               className="bg-antique-gold hover:bg-antique-gold-dark text-forest-green font-medium px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
               asChild
             >
-              <Link href="/contact">Free Consultation</Link>
+              <Link href="/consultation">Free Consultation</Link>
             </Button>
           </motion.nav>
 
@@ -408,7 +408,7 @@ export default function Navigation() {
                   className="w-full bg-antique-gold hover:bg-antique-gold-dark text-forest-green font-medium py-6 rounded-full shadow-md"
                   asChild
                 >
-                  <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link href="/consultation" onClick={() => setIsMobileMenuOpen(false)}>
                     Free Consultation
                   </Link>
                 </Button>

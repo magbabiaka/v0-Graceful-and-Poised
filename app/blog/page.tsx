@@ -41,6 +41,36 @@ export default function BlogPage() {
       readTime: "8 min read",
       category: "Leadership",
     },
+    {
+      id: "mastering-high-stakes-negotiations",
+      title: "Mastering High-Stakes Negotiations: A Leader's Guide",
+      excerpt:
+        "Learn the psychological frameworks and strategic techniques that elite negotiators use to secure favorable outcomes while maintaining valuable relationships.",
+      image: "/images/blog/high-stakes-negotiations.png",
+      date: "January 5, 2025",
+      readTime: "10 min read",
+      category: "Negotiation",
+    },
+    {
+      id: "building-trust-across-cultures",
+      title: "Building Trust Across Cultures: The Foundation of Global Leadership",
+      excerpt:
+        "Explore proven strategies for establishing credibility and trust with international stakeholders, understanding cultural nuances that make or break business relationships.",
+      image: "/images/blog/building-trust-cultures.png",
+      date: "January 12, 2025",
+      readTime: "8 min read",
+      category: "Cultural Intelligence",
+    },
+    {
+      id: "power-of-professional-presence",
+      title: "The Power of Professional Presence in the Digital Age",
+      excerpt:
+        "Adapt your executive presence for virtual meetings, hybrid work environments, and digital communications while maintaining authority and authenticity.",
+      image: "/images/blog/digital-presence.png",
+      date: "January 18, 2025",
+      readTime: "7 min read",
+      category: "Digital Leadership",
+    },
   ]
 
   const strategicArticles = [

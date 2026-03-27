@@ -58,7 +58,7 @@ const connectionLinks = [
   {
     title: "Follow Me on LinkedIn",
     description: "Stay connected and join the conversation",
-    href: "https://www.linkedin.com/in/doreenagbabiaka/",
+    href: "https://www.linkedin.com/in/doreen-agbabiaka/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3B7jdbiqRNRtOn%2FJleuLeOww%3D%3D",
     icon: Linkedin,
     variant: "outline" as const,
     external: true,

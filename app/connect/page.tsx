@@ -12,10 +12,11 @@ export const metadata = {
 const connectionLinks = [
   {
     title: "Download Free E-Book",
-    description: "Get actionable insights on executive presence and influence",
-    href: "/ebook",
+    description: "The Quiet Influence Playbook - Be remembered, not overlooked",
+    href: "/downloads/the-quiet-influence-playbook.pdf",
     icon: Download,
     variant: "accent" as const,
+    download: true,
   },
   {
     title: "Join My Free Newsletter",
@@ -109,6 +110,7 @@ export default function ConnectPage() {
           {connectionLinks.map((link) => {
             const Icon = link.icon
             const isExternal = link.external
+            const isDownload = link.download
 
             const linkContent = (
               <div
@@ -175,6 +177,18 @@ export default function ConnectPage() {
                 </svg>
               </div>
             )
+
+            if (isDownload) {
+              return (
+                <a
+                  key={link.title}
+                  href={link.href}
+                  download="The-Quiet-Influence-Playbook.pdf"
+                >
+                  {linkContent}
+                </a>
+              )
+            }
 
             if (isExternal) {
               return (

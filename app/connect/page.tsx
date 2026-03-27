@@ -50,9 +50,10 @@ const connectionLinks = [
   {
     title: "Digital Business Card",
     description: "Save my contact information",
-    href: "/vcard",
+    href: "https://dot.cards/deeabiaka",
     icon: CreditCard,
     variant: "default" as const,
+    external: true,
   },
   {
     title: "Follow Me on LinkedIn",

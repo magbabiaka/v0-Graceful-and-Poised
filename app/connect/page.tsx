@@ -28,9 +28,10 @@ const connectionLinks = [
   {
     title: "Book Me to Speak",
     description: "Keynotes and workshops on leadership, protocol, and influence",
-    href: "/booking?type=speaking",
+    href: "https://calendly.com/engage-gracefulandpoised/art-of-power-influence",
     icon: Mic,
     variant: "default" as const,
+    external: true,
   },
   {
     title: "Work With Me 1:1",

@@ -243,16 +243,15 @@ export default function BlogPage() {
               Get exclusive strategies on global leadership, cultural intelligence, and executive presence delivered
               monthly.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 rounded-lg border border-forest-green-light focus:outline-none focus:ring-2 focus:ring-antique-gold text-forest-green"
-              />
+            <a
+              href="https://gracefulandpoised.substack.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button className="bg-antique-gold hover:bg-antique-gold-dark text-forest-green font-bold px-8 py-3">
-                Subscribe
+                Subscribe on Substack
               </Button>
-            </div>
+            </a>
           </div>
         </div>
       </section>

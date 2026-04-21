@@ -13,10 +13,10 @@ const connectionLinks = [
   {
     title: "Download Free E-Book",
     description: "The Quiet Influence Playbook - Be remembered, not overlooked",
-    href: "/downloads/the-quiet-influence-playbook.pdf",
+    href: "https://doreena3.gumroad.com/l/ixpam",
     icon: Download,
     variant: "accent" as const,
-    download: true,
+    external: true,
   },
   {
     title: "Join My Free Newsletter",

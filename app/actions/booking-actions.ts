@@ -19,36 +19,49 @@ interface BookingFormData {
 // Initialize Resend with API key
 const resend = new Resend(process.env.RESEND_API_KEY)
 
+const SENDER = "Graceful and Poised <info@gracefulandpoised.com>"
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
+}
+
+function getField(formData: FormData, key: string, fallback = "") {
+  const value = formData.get(key)
+  const trimmed = typeof value === "string" ? value.trim() : ""
+  return escapeHtml(trimmed || fallback)
+}
+
 export async function submitBookingForm(formData: FormData) {
   try {
-    // Extract form data
     const bookingData: BookingFormData = {
-      firstName: formData.get("firstName") as string,
-      lastName: formData.get("lastName") as string,
-      email: formData.get("email") as string,
-      phone: formData.get("phone") as string,
-      company: (formData.get("company") as string) || "N/A",
-      service: formData.get("service") as string,
-      preferredDate: formData.get("preferredDate") as string,
-      preferredDay: formData.get("preferredDay") as string,
-      preferredTime: formData.get("preferredTime") as string,
-      message: (formData.get("message") as string) || "No message provided.",
-      referral: (formData.get("referral") as string) || "Not specified",
+      firstName: getField(formData, "firstName"),
+      lastName: getField(formData, "lastName"),
+      email: getField(formData, "email"),
+      phone: getField(formData, "phone"),
+      company: getField(formData, "company", "N/A"),
+      service: getField(formData, "service"),
+      preferredDate: getField(formData, "preferredDate"),
+      preferredDay: getField(formData, "preferredDay"),
+      preferredTime: getField(formData, "preferredTime"),
+      message: getField(formData, "message", "No message provided."),
+      referral: getField(formData, "referral", "Not specified"),
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingData.email)) {
+      return { success: false, error: "Please enter a valid email address." }
     }
 
     // Format the day and time for display
     const formattedDay = bookingData.preferredDay.charAt(0).toUpperCase() + bookingData.preferredDay.slice(1)
-    const formattedTime = bookingData.preferredTime
-      .replace("am", " AM")
-      .replace("pm", " PM")
-      .replace("9", "9:00")
-      .replace("10", "10:00")
-      .replace("11", "11:00")
-      .replace("12", "12:00")
-      .replace("1", "1:00")
-      .replace("2", "2:00")
-      .replace("3", "3:00")
-      .replace("4", "4:00")
+    const formattedTime = bookingData.preferredTime.replace(
+      /^(\d{1,2})(am|pm)$/i,
+      (_, hour: string, period: string) => `${hour}:00 ${period.toUpperCase()}`,
+    )
 
     // Create HTML email content for company notification
     const companyEmailHtml = `
@@ -268,8 +281,9 @@ export async function submitBookingForm(formData: FormData) {
 
     // Send email to company
     const { data: companyEmailData, error: companyEmailError } = await resend.emails.send({
-      from: "onboarding@resend.dev", // Default sender during testing
+      from: SENDER,
       to: "info@gracefulandpoised.com",
+      replyTo: bookingData.email,
       subject: `New Consultation Booking: ${bookingData.firstName} ${bookingData.lastName}`,
       html: companyEmailHtml,
     })
@@ -281,26 +295,20 @@ export async function submitBookingForm(formData: FormData) {
 
     console.log("Company notification sent successfully:", companyEmailData?.id)
 
-    // Note: Client confirmation email is commented out until domain verification is complete
-    // Once you verify your domain in Resend, you can uncomment this section
-    /*
-    console.log("Sending confirmation to client:", bookingData.email);
-    
-    // Send confirmation email to client
     const { data: clientEmailData, error: clientEmailError } = await resend.emails.send({
-      from: 'onboarding@resend.dev', // Update this with your verified domain email
+      from: SENDER,
       to: bookingData.email,
-      subject: 'Your Consultation Request with Graceful & Poised',
+      replyTo: "info@gracefulandpoised.com",
+      subject: "Your Consultation Request with Graceful & Poised",
       html: clientEmailHtml,
-    });
+    })
 
     if (clientEmailError) {
-      console.error("Error sending client confirmation:", clientEmailError);
-      // Don't throw here, as we still want to return success if the company notification was sent
+      // The company was already notified, so the booking still counts as submitted.
+      console.error("Error sending client confirmation:", clientEmailError)
     } else {
-      console.log("Client confirmation sent successfully:", clientEmailData?.id);
+      console.log("Client confirmation sent successfully:", clientEmailData?.id)
     }
-    */
 
     return {
       success: true,

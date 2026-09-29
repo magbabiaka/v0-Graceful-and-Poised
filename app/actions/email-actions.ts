@@ -139,6 +139,7 @@ async function sendEmailToCompany(formData: ContactFormData) {
     const { data, error } = await resend.emails.send({
       from: SENDER,
       to: [COMPANY_EMAIL],
+      cc: ["engage@gracefulandpoised.com"],
       replyTo: email,
       subject: `New Contact Form: ${subject}`,
       html: htmlContent,

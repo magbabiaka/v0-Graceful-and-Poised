@@ -5,6 +5,40 @@ import { Resend } from "resend"
 // Initialize Resend with API key
 const resend = new Resend(process.env.RESEND_API_KEY)
 
+const SENDER = "Graceful and Poised <info@gracefulandpoised.com>"
+const COMPANY_EMAIL = "info@gracefulandpoised.com"
+
+const SERVICE_LABELS: Record<string, string> = {
+  "one-on-one-coaching": "One-on-One Coaching",
+  "corporate-training": "Corporate Training",
+  "diplomatic-protocol": "Diplomatic Protocol",
+  "vip-events": "VIP Events",
+  "own-the-room": "Own the Room",
+  other: "Other",
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
+}
+
+function sanitize(formData: ContactFormData): ContactFormData {
+  const service = formData.service?.trim() || "other"
+  return {
+    firstName: escapeHtml(formData.firstName?.trim() ?? ""),
+    lastName: escapeHtml(formData.lastName?.trim() ?? ""),
+    email: formData.email?.trim() ?? "",
+    phone: escapeHtml(formData.phone?.trim() ?? ""),
+    subject: escapeHtml(formData.subject?.trim() ?? ""),
+    service: escapeHtml(SERVICE_LABELS[service] ?? service),
+    message: escapeHtml(formData.message?.trim() ?? "").replace(/\n/g, "<br>"),
+  }
+}
+
 interface ContactFormData {
   firstName: string
   lastName: string
@@ -15,37 +49,36 @@ interface ContactFormData {
   message: string
 }
 
-export async function sendContactEmails(formData: ContactFormData) {
+export async function sendContactEmails(rawData: ContactFormData) {
+  const email = rawData.email?.trim() ?? ""
+  if (!rawData.firstName?.trim() || !rawData.lastName?.trim() || !rawData.subject?.trim() || !rawData.message?.trim()) {
+    return { success: false, error: "Please fill in all required fields." }
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return { success: false, error: "Please enter a valid email address." }
+  }
+
+  const formData = sanitize(rawData)
+
   try {
-    // Step 1: Send information to the company email
     const companyEmailResult = await sendEmailToCompany(formData)
 
     if (!companyEmailResult.success) {
       console.error("Failed to send email to company:", companyEmailResult.error)
-      return { success: false, error: "Failed to send notification email" }
+      return { success: false, error: "We couldn't send your message. Please try again or email us directly." }
     }
 
-    // Note: We're not sending client emails until domain verification is complete
-    // This is commented out to prevent Resend API errors
-    /*
-    // Step 2: Send automated follow-up to the user
     const clientEmailResult = await sendAutomatedResponse(formData)
 
     if (!clientEmailResult.success) {
       console.error("Failed to send email to client:", clientEmailResult.error)
-      // We still return success since the company was notified
-      return { success: true, warning: "Company notified but client email failed" }
+      return { success: true, warning: "Company notified but client confirmation email failed" }
     }
-    */
 
-    return {
-      success: true,
-      message:
-        "Form submitted successfully. Note: Client confirmation emails are disabled until domain verification is complete.",
-    }
+    return { success: true }
   } catch (error) {
     console.error("Error sending emails:", error)
-    return { success: false, error: "Failed to send emails" }
+    return { success: false, error: "We couldn't send your message. Please try again or email us directly." }
   }
 }
 
@@ -93,11 +126,6 @@ async function sendEmailToCompany(formData: ContactFormData) {
               <h3>Message:</h3>
               <p>${message}</p>
             </div>
-            
-            <div class="note">
-              <p><strong>Note:</strong> Automated client confirmation emails are currently disabled. 
-              To enable them, please verify your domain in Resend. See instructions in the developer notes.</p>
-            </div>
           </div>
           <div class="footer">
             <p>This is an automated message from your Graceful and Poised website.</p>
@@ -109,11 +137,12 @@ async function sendEmailToCompany(formData: ContactFormData) {
 
     // Send email using Resend - only to the verified email address
     const { data, error } = await resend.emails.send({
-      from: "Graceful and Poised <onboarding@resend.dev>",
-      to: ["info@gracefulandpoised.com"],
+      from: SENDER,
+      to: [COMPANY_EMAIL],
+      cc: ["engage@gracefulandpoised.com"],
+      replyTo: email,
       subject: `New Contact Form: ${subject}`,
       html: htmlContent,
-      // Don't set reply_to as it might cause issues with Resend's testing mode
     })
 
     if (error) {
@@ -128,7 +157,6 @@ async function sendEmailToCompany(formData: ContactFormData) {
   }
 }
 
-// This function is kept for future use after domain verification
 async function sendAutomatedResponse(formData: ContactFormData) {
   const { firstName, email, service } = formData
 
@@ -198,10 +226,10 @@ async function sendAutomatedResponse(formData: ContactFormData) {
       </html>
     `
 
-    // This will be enabled after domain verification
     const { data, error } = await resend.emails.send({
-      from: "Graceful and Poised <onboarding@resend.dev>",
+      from: SENDER,
       to: [email],
+      replyTo: COMPANY_EMAIL,
       subject: "Thank You for Contacting Graceful and Poised",
       html: htmlContent,
     })

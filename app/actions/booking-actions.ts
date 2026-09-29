@@ -283,6 +283,7 @@ export async function submitBookingForm(formData: FormData) {
     const { data: companyEmailData, error: companyEmailError } = await resend.emails.send({
       from: SENDER,
       to: "info@gracefulandpoised.com",
+      cc: "engage@gracefulandpoised.com",
       replyTo: bookingData.email,
       subject: `New Consultation Booking: ${bookingData.firstName} ${bookingData.lastName}`,
       html: companyEmailHtml,

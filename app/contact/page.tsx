@@ -14,6 +14,8 @@ import { sendContactEmails } from "@/app/actions/email-actions"
 
 export default function ContactPage() {
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formError, setFormError] = useState<string | null>(null)
   const formRef = useRef(null)
   const isFormInView = useInView(formRef, { once: true, amount: 0.3 })
   const contactInfoRef = useRef(null)
@@ -36,15 +38,21 @@ export default function ContactPage() {
       message: formData.get("message") as string,
     }
 
+    setIsSubmitting(true)
+    setFormError(null)
     try {
-      // Send emails
-      await sendContactEmails(contactData)
-
-      // Update UI state
-      setFormSubmitted(true)
+      const result = await sendContactEmails(contactData)
+      if (result.success) {
+        form.reset()
+        setFormSubmitted(true)
+      } else {
+        setFormError(result.error || "Something went wrong. Please try again.")
+      }
     } catch (error) {
       console.error("Error submitting form:", error)
-      // You could add error handling UI here
+      setFormError("Something went wrong. Please try again or email info@gracefulandpoised.com.")
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -201,7 +209,7 @@ export default function ContactPage() {
                     <label htmlFor="service" className="text-sm font-medium text-forest-green">
                       Service of Interest*
                     </label>
-                    <Select name="service">
+                    <Select name="service" required>
                       <SelectTrigger className="border-gray-300 focus:border-antique-gold focus:ring-antique-gold rounded-lg py-6">
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
@@ -245,12 +253,18 @@ export default function ContactPage() {
                     </label>
                   </div>
 
+                  {formError && (
+                    <p role="alert" className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                      {formError}
+                    </p>
+                  )}
+
                   <Button
                     type="submit"
                     className="w-full bg-antique-gold hover:bg-antique-gold-dark text-forest-green font-bold py-6 rounded-full group"
-                    disabled={formSubmitted}
+                    disabled={isSubmitting}
                   >
-                    {formSubmitted ? (
+                    {isSubmitting ? (
                       <>
                         Sending... <span className="ml-2 animate-pulse">•••</span>
                       </>

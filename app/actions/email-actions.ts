@@ -1,6 +1,7 @@
 "use server"
 
 import { Resend } from "resend"
+import { checkForSpam } from "@/lib/spam-guard"
 
 // Initialize Resend with API key
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -49,13 +50,35 @@ interface ContactFormData {
   message: string
 }
 
-export async function sendContactEmails(rawData: ContactFormData) {
+interface ContactSubmission extends ContactFormData {
+  website?: string
+  formStartedAt?: number
+}
+
+export async function sendContactEmails(rawData: ContactSubmission) {
   const email = rawData.email?.trim() ?? ""
   if (!rawData.firstName?.trim() || !rawData.lastName?.trim() || !rawData.subject?.trim() || !rawData.message?.trim()) {
     return { success: false, error: "Please fill in all required fields." }
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
     return { success: false, error: "Please enter a valid email address." }
+  }
+  if (rawData.message.length > 5000 || rawData.subject.length > 200) {
+    return { success: false, error: "Your message is too long. Please shorten it and try again." }
+  }
+
+  const spam = await checkForSpam({
+    honeypot: rawData.website,
+    startedAt: rawData.formStartedAt,
+    names: [rawData.firstName.trim(), rawData.lastName.trim()],
+    subject: rawData.subject,
+    message: rawData.message,
+  })
+  if (!spam.ok) {
+    console.warn("Blocked contact submission:", spam.reason)
+    return spam.silent
+      ? { success: true }
+      : { success: false, error: "Too many submissions. Please wait a few minutes or email us directly." }
   }
 
   const formData = sanitize(rawData)

@@ -1,6 +1,7 @@
 "use server"
 
 import { Resend } from "resend"
+import { checkForSpam, HONEYPOT_FIELD, STARTED_AT_FIELD } from "@/lib/spam-guard"
 
 interface BookingFormData {
   firstName: string
@@ -52,8 +53,22 @@ export async function submitBookingForm(formData: FormData) {
       referral: getField(formData, "referral", "Not specified"),
     }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingData.email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingData.email) || bookingData.email.length > 254) {
       return { success: false, error: "Please enter a valid email address." }
+    }
+
+    const rawMessage = formData.get("message")
+    const spam = await checkForSpam({
+      honeypot: formData.get(HONEYPOT_FIELD) as string | null,
+      startedAt: formData.get(STARTED_AT_FIELD) as string | null,
+      names: [bookingData.firstName, bookingData.lastName],
+      message: typeof rawMessage === "string" ? rawMessage : "",
+    })
+    if (!spam.ok) {
+      console.warn("Blocked booking submission:", spam.reason)
+      return spam.silent
+        ? { success: true }
+        : { success: false, error: "Too many submissions. Please wait a few minutes or email us directly." }
     }
 
     // Format the day and time for display
@@ -321,94 +336,5 @@ export async function submitBookingForm(formData: FormData) {
       success: false,
       error: "Failed to submit booking form. Please try again later.",
     }
-  }
-}
-
-// Test function to verify email sending works
-export async function testBookingEmail() {
-  try {
-    const testHtml = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Test Email from Booking Form</title>
-      <style>
-        body {
-          font-family: Arial, sans-serif;
-          line-height: 1.6;
-          color: #333;
-          margin: 0;
-          padding: 0;
-        }
-        .container {
-          max-width: 600px;
-          margin: 0 auto;
-          padding: 20px;
-        }
-        .header {
-          background-color: #1a472a;
-          padding: 20px;
-          text-align: center;
-        }
-        .logo {
-          width: 261px;
-          height: 106px;
-        }
-        .content {
-          padding: 20px;
-          background-color: #f9f9f9;
-        }
-        h1 {
-          color: #fff;
-          margin-top: 15px;
-        }
-        .footer {
-          text-align: center;
-          padding: 20px;
-          font-size: 12px;
-          color: #666;
-          background-color: #f1f1f1;
-        }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <div class="header">
-          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Graceful_Poised_Logo-YiULpjwRsFmFFEuc9QRHX5jtSV3dbC.png" alt="Graceful and Poised" class="logo">
-          <h1>Test Email from Booking Form</h1>
-        </div>
-        <div class="content">
-          <p>This is a test email to verify that the booking form email functionality is working correctly.</p>
-          <p>If you're seeing this, the email system is configured properly!</p>
-          <p>Time sent: ${new Date().toLocaleString()}</p>
-        </div>
-        <div class="footer">
-          <p>© ${new Date().getFullYear()} Graceful and Poised. All rights reserved.</p>
-          <p>This is a test email sent from your website's booking form.</p>
-        </div>
-      </div>
-    </body>
-    </html>
-    `
-
-    const { data, error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: "info@gracefulandpoised.com",
-      subject: "Test Email from Booking Form",
-      html: testHtml,
-    })
-
-    if (error) {
-      console.error("Error sending test email:", error)
-      return { success: false, error: String(error) }
-    }
-
-    console.log("Test email sent successfully:", data?.id)
-    return { success: true, messageId: data?.id }
-  } catch (error) {
-    console.error("Error in test email function:", error)
-    return { success: false, error: String(error) }
   }
 }

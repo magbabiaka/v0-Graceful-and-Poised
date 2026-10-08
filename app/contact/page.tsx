@@ -20,6 +20,7 @@ export default function ContactPage() {
   const isFormInView = useInView(formRef, { once: true, amount: 0.3 })
   const contactInfoRef = useRef(null)
   const isContactInfoInView = useInView(contactInfoRef, { once: true, amount: 0.3 })
+  const formStartedAt = useRef(Date.now())
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -36,6 +37,8 @@ export default function ContactPage() {
       subject: formData.get("subject") as string,
       service: formData.get("service") as string,
       message: formData.get("message") as string,
+      website: (formData.get("website") as string) || "",
+      formStartedAt: formStartedAt.current,
     }
 
     setIsSubmitting(true)
@@ -138,6 +141,10 @@ export default function ContactPage() {
                 </motion.div>
               ) : (
                 <form className="space-y-6" onSubmit={handleSubmit}>
+                  <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                    <label htmlFor="website">Website</label>
+                    <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="firstName" className="text-sm font-medium text-forest-green">

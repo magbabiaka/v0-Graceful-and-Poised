@@ -4,6 +4,13 @@ import { Playfair_Display, Lato } from "next/font/google"
 import "./globals.css"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
+import { BotIdClient } from "botid/client"
+
+// Server actions POST to the page path they're invoked from.
+const botIdProtectedRoutes = [
+  { path: "/contact", method: "POST" as const },
+  { path: "/booking", method: "POST" as const },
+]
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -182,6 +189,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <BotIdClient protect={botIdProtectedRoutes} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

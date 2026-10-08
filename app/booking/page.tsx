@@ -17,6 +17,7 @@ export default function BookingPage() {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
   const formRef = useRef<HTMLFormElement>(null)
+  const formStartedAt = useRef(Date.now())
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -25,6 +26,7 @@ export default function BookingPage() {
 
     try {
       const formData = new FormData(event.currentTarget)
+      formData.set("formStartedAt", String(formStartedAt.current))
       const result = await submitBookingForm(formData)
 
       if (result.success) {
@@ -171,6 +173,10 @@ export default function BookingPage() {
                 </div>
               ) : (
                 <form className="space-y-6" onSubmit={handleSubmit} ref={formRef}>
+                  <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                    <label htmlFor="website">Website</label>
+                    <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="firstName" className="text-sm font-medium text-card-foreground">
